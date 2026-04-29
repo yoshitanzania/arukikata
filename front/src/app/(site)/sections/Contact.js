@@ -19,7 +19,7 @@ export default function Contact() {
         {FLOW.map((f) => (
           <div key={f.step} className={styles.flowItem}>
             <div className={styles.flowNum}>{f.step}</div>
-
+head
             <div className={styles.flowBody}>
               <div className={styles.flowTitle}>{f.title}</div>
               <div className={styles.flowDesc}>{f.desc}</div>
