@@ -1,5 +1,5 @@
 import Link from "next/link";
-import styles from "./contact.module.css";
+import styles from "./Contact.module.css";
 import PageLinkPrimary from "@/components/PageLinks";
 export default function Contact() {
     const FLOW = [
