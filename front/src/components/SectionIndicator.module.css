@@ -1,0 +1,97 @@
+/* 右端に細い縦ライン */
+.secInd{
+  position: fixed;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2000;
+}
+
+.secIndList{
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 8px 0;
+  position: relative;
+}
+
+/* 縦ライン（うっすら） */
+.secIndList::before{
+  content: "";
+  position: absolute;
+  right: 6px;
+  top: 6px;
+  bottom: 6px;
+  width: 1px;
+  background: rgba(0,0,0,0.10);
+}
+
+.secIndItem{}
+
+/* ボタンは透明・主張しない */
+.secIndBtn{
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+
+  border: 0;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+
+  /* “右端に沿ってる感” */
+  padding-right: 0;
+}
+
+/* ドット（通常は小さく薄い） */
+.dot{
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(0,0,0,0.28);
+  box-shadow: 0 0 0 3px rgba(0,0,0,0.0);
+  transition: transform 180ms ease, background 180ms ease, box-shadow 180ms ease, opacity 180ms ease;
+  opacity: 0.65;
+}
+
+/* ラベルは通常隠す（hoverかactiveで出す） */
+.label{
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  color: rgba(0,0,0,0.70);
+  white-space: nowrap;
+
+  opacity: 0;
+  transform: translateX(6px);
+  pointer-events: none;
+  transition: opacity 180ms ease, transform 180ms ease;
+}
+
+/* hoverでラベルが出る（控えめ） */
+.secIndBtn:hover .label{
+  opacity: 0.85;
+  transform: translateX(0);
+}
+.secIndBtn:hover .dot{
+  opacity: 0.9;
+}
+
+/* activeは少しだけ強調 */
+.isActive .dot{
+  background: rgba(0,0,0,0.78);
+  opacity: 1;
+  transform: scale(1.15);
+  box-shadow: 0 0 0 4px rgba(0,0,0,0.06);
+}
+.isActive .label{
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* モバイルはラベル出さない（完全ミニマル） */
+@media (max-width: 640px){
+  .label{ display:none; }
+  .secInd{ right: 10px; }
+}

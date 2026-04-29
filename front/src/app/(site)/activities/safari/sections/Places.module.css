@@ -1,0 +1,661 @@
+/* =========================
+   Places.module.css
+   - global.css のカラー変数使用版
+   ========================= */
+
+.section{
+}
+
+.grid{
+  margin-top: 18px;
+  display: grid;
+  gap: 24px;
+  min-width: 0;
+  align-items: stretch;
+}
+
+.grid > *{ min-width: 0; }
+
+@media (min-width: 960px){
+  .grid{
+    grid-template-columns: 520px 1fr;
+    gap: 32px;
+    align-items: start;
+    --placesPaneH: clamp(560px, 72vh, 720px);
+    overflow: hidden;
+  }
+
+  .leftCol,
+  .rightCol{
+    height: var(--placesPaneH);
+  }
+}
+
+@media (max-width: 767px){
+  .grid{ grid-template-columns: 1fr; }
+}
+
+.mapWrap{
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  max-width: 100%;
+  overflow: hidden;
+  min-width: 0;
+}
+
+.map{
+  position: relative;
+  width: 100%;
+  border-radius: 5px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  aspect-ratio: 1 / 1.05;
+}
+
+@media (min-width: 768px){
+  .mapWrap{ height: 100%; }
+  .map{
+    height: 100%;
+    aspect-ratio: auto;
+    min-height: 420px;
+  }
+}
+
+@media (max-width: 520px){
+  .map{ aspect-ratio: 1 / 1; }
+}
+
+.mapMask{
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(900px 700px at 20% 20%, var(--accent-soft), transparent 60%),
+    radial-gradient(900px 700px at 80% 60%, rgba(34,197,94,0.12), transparent 62%),
+    linear-gradient(180deg, var(--bg-muted), rgba(15,23,42,0.02));
+
+  -webkit-mask-image: url("/masks/tanzania.svg");
+  mask-image: url("/masks/tanzania.svg");
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+
+  opacity: 0.95;
+  transform: translateZ(0);
+}
+
+.mapText{
+  position: absolute;
+  transform: translate(-50%, -50%);
+  display: inline-flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  gap: 2px;
+  pointer-events: none;
+  user-select: none;
+  white-space: nowrap;
+  z-index: 1;
+}
+
+.mapDot{
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--text-muted);
+}
+
+.mapLabel{
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--text-faint);
+}
+
+.mapTextAirport .mapDot{ background: var(--map-airport); }
+.mapTextAirport .mapLabel{
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+
+@media (max-width: 520px){
+  .mapDot{ width: 3px; height: 3px; }
+  .mapLabel{ font-size: 10px; color: var(--text-dim); }
+}
+
+.pin{
+  position: absolute;
+  transform: translate(-50%, -60%);
+  border: 0;
+  padding: 0;
+  background: transparent;
+  cursor: pointer;
+  outline: none;
+  z-index: 3;
+}
+
+.pinDot{
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+  display: block;
+  background: var(--accent);
+  box-shadow: var(--shadow-pin);
+  position: relative;
+  z-index: 2;
+}
+
+.pinRing{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 34px;
+  height: 34px;
+  transform: translate(-50%, -50%);
+  border-radius: 999px;
+  border: 1px solid var(--line-strong);
+  background: color-mix(in srgb, var(--card-bg-strong) 55%, transparent);
+  backdrop-filter: blur(10px);
+  z-index: 1;
+}
+
+.pinLabel{
+  position: absolute;
+  left: -20px;
+  top: -50px;
+  transform: translateY(-50%) translateX(-4px);
+
+  white-space: nowrap;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  color: var(--text-strong);
+
+  padding: 8px 10px;
+  border-radius: 14px;
+  background: var(--card-bg-strong);
+  backdrop-filter: blur(10px);
+
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 160ms ease, transform 160ms ease;
+}
+
+.pin:hover .pinLabel,
+.pin:focus-visible .pinLabel,
+.pinShown .pinLabel{
+  opacity: 1;
+  transform: translateX(12px) translateY(0);
+}
+
+.pinLabel::after{
+  content: "";
+  position: absolute;
+  left: 15px;
+  bottom: -3px;
+  width: 10px;
+  height: 10px;
+  background: var(--card-bg-strong);
+  transform: rotate(45deg);
+}
+
+.pinActive .pinDot{
+  background: linear-gradient(90deg, var(--accent-grad-a), var(--accent-grad-b));
+}
+.pinActive .pinRing{ border-color: var(--accent-soft); }
+
+.pin:focus-visible{
+  outline: 3px solid var(--accent-soft-strong);
+  outline-offset: 6px;
+  border-radius: 16px;
+}
+
+.mPin{
+  display: none;
+  position: absolute;
+  transform: translate(-50%, -60%);
+  border: 0;
+  padding: 0;
+  background: transparent;
+  cursor: pointer;
+  z-index: 4;
+}
+
+.mPinNo{
+  width: 28px;
+  height: 28px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  font-size: 12px;
+  font-weight: 900;
+  color: var(--text-strong);
+  background: var(--card-bg-strong);
+  border: 1px solid var(--line-soft);
+  box-shadow: var(--shadow-floating);
+}
+
+.mPinActive .mPinNo{
+  color: var(--accent-contrast);
+  background: var(--accent);
+  border-color: var(--accent-soft);
+}
+
+@media (max-width: 520px){
+  .pin{ display: none; }
+  .mPin{ display: block; }
+  .mPinNo{ width: 30px; height: 30px; }
+}
+
+.carousel{
+  width: 100%;
+  min-width: 0;
+  position: relative;
+}
+
+.scroller{
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  display: grid;
+  grid-auto-flow: column;
+  gap: 12px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  touch-action: auto;
+  padding: 2px 2px 10px;
+}
+
+.scroller::-webkit-scrollbar{ height: 8px; }
+.scroller::-webkit-scrollbar-thumb{
+  background: var(--line-strong);
+  border-radius: 999px;
+}
+
+@media (min-width: 768px){
+  .scroller{
+    grid-auto-columns: 100%;
+    gap: 16px;
+    height: 100%;
+    padding-bottom: 10px;
+  }
+}
+
+@media (max-width: 520px){
+  .scroller{
+    grid-auto-columns: 92%;
+    gap: 8px;
+  }
+}
+@media (max-width: 380px){
+  .scroller{ grid-auto-columns: 96%; }
+}
+
+.card{
+  scroll-snap-align: center;
+  border-radius: 5px;
+  border: 1px solid var(--line);
+  background: var(--card-bg);
+  backdrop-filter: blur(3px);
+  padding: 14px;
+  cursor: pointer;
+  min-width: 0;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.cardActive{ border-color: var(--accent-soft); }
+
+@media (min-width: 960px){
+  .card{
+    height: 100%;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    touch-action: auto;
+  }
+  .card::-webkit-scrollbar{ width: 8px; }
+  .card::-webkit-scrollbar-thumb{
+    background: var(--line-soft);
+    border-radius: 999px;
+  }
+}
+
+.cardTop{
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+
+.badge{
+  width: 28px;
+  height: 28px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  font-weight: 1000;
+  font-size: 12px;
+  color: var(--inverse-text);
+  background: var(--inverse-bg);
+}
+
+.name{
+  font-weight: 1000;
+  font-size: 14px;
+  color: var(--text);
+  line-height: 1.3;
+}
+
+.short{
+  font-size: 12px;
+  color: var(--text-subtle);
+  line-height: 1.6;
+  margin-top: 4px;
+}
+
+.detailLine{
+  margin: 8px 0 10px;
+  font-size: 13px;
+  line-height: 1.9;
+  color: var(--text-body);
+}
+
+.dots{ opacity: 0.8; }
+
+.readMoreInline,
+.readMoreInlineClose{
+  margin-left: 8px;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 900;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-thickness: 1px;
+}
+
+.readMoreInline{
+  color: var(--text-subtle);
+  text-decoration-color: var(--line-soft);
+}
+
+.readMoreInline:hover{
+  text-decoration-color: var(--line-strong);
+}
+
+.readMoreInlineClose{
+  color: var(--text-faint);
+  text-decoration-color: var(--line-soft);
+}
+
+.moreWrap{
+  display: inline-block;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(2px);
+  transition: max-height 240ms ease, opacity 200ms ease, transform 240ms ease;
+  vertical-align: baseline;
+}
+
+.moreOpen{
+  max-height: 500px;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce){
+  .moreWrap{ transition: none; }
+}
+
+.animals{
+  margin: 10px 0 12px;
+}
+
+.animalsTitle{
+  font-size: 11px;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  font-weight: 900;
+  margin-bottom: 10px;
+}
+
+.animalsRow{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+.animalIconWrap{
+  width: 48px;
+  height: 58px;
+  border-radius: 16px;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  position: relative;
+  cursor: default;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: transform 160ms ease;
+}
+
+.animalIcon{
+  width: 34px;
+  height: 34px;
+  display: block;
+  object-fit: contain;
+  object-position: center;
+  filter: drop-shadow(0 6px 10px rgba(2,6,23,0.12));
+  opacity: 0.96;
+}
+
+.animalIconWrap::after{
+  content: attr(data-label);
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 10px);
+  transform: translateX(-50%) translateY(4px);
+
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.02em;
+  color: var(--inverse-text);
+  background: var(--inverse-bg);
+  padding: 6px 8px;
+  border-radius: 999px;
+  white-space: nowrap;
+
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 140ms ease, transform 140ms ease;
+}
+
+.animalIconWrap::before{
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 4px);
+  transform: translateX(-50%);
+  width: 8px;
+  height: 8px;
+  background: var(--inverse-bg);
+  rotate: 45deg;
+
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 140ms ease;
+}
+
+@media (hover:hover){
+  .animalIconWrap:hover{ transform: translateY(-2px); }
+  .animalIconWrap:hover::after,
+  .animalIconWrap:hover::before{
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+.animalIconWrap:focus-visible{
+  outline: 3px solid var(--accent-soft-strong);
+  outline-offset: 4px;
+}
+
+.animalIconWrap:focus-visible::after,
+.animalIconWrap:focus-visible::before{
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.animalName{ display: none; }
+
+@media (max-width: 520px){
+  .animalIconWrap{
+    width: 56px;
+    height: 62px;
+  }
+  .animalIcon{
+    width: 30px;
+    height: 30px;
+  }
+  .animalName{
+    display: block;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    color: var(--text-dim);
+    line-height: 1;
+    white-space: nowrap;
+  }
+}
+
+.navArrow{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 20;
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--card-bg-strong);
+  backdrop-filter: blur(10px);
+  box-shadow: var(--shadow-floating);
+  color: var(--text-strong);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  user-select: none;
+  transition: transform 160ms ease, opacity 160ms ease;
+}
+
+.navArrow:active{
+  transform: translateY(-50%) scale(0.98);
+}
+
+.navLeft{ left: 10px; }
+.navRight{ right: 10px; }
+
+.navDisabled{
+  opacity: 0.25;
+  pointer-events: none;
+}
+
+@media (max-width: 520px){
+  .navArrow{ display: none; }
+}
+
+.tags{
+  margin-top: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tag{
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  color: var(--text-soft);
+  background: var(--chip-bg);
+  border: 1px solid var(--line);
+  white-space: nowrap;
+}
+
+@media (hover:hover){
+  .tag:hover{ background: var(--chip-bg-hover); }
+}
+
+@media (max-width: 520px){
+  .tag{
+    font-size: 12px;
+    padding: 7px 12px;
+  }
+}
+
+@media (min-width: 521px) and (max-width: 959px){
+  .pinLabel{
+    left: 50%;
+    top: auto;
+    bottom: calc(100% + 10px);
+    transform: translateX(-50%) translateY(6px);
+  }
+
+  .pin:hover .pinLabel,
+  .pin:focus-visible .pinLabel,
+  .pinShown .pinLabel{
+    transform: translateX(-50%) translateY(0);
+  }
+
+  .pinLabel::after{
+    left: 50%;
+    transform: translateX(-50%) rotate(45deg);
+    bottom: -4px;
+  }
+}
+
+.leftCol,.rightCol{
+  height: 100%;
+}
+
+@media (min-width: 960px){
+  .gridExpanded{
+    --placesPaneH: auto;
+    overflow: visible;
+  }
+
+  .gridExpanded .leftCol,
+  .gridExpanded .rightCol{
+    height: auto;
+  }
+
+  .gridExpanded .card{
+    height: auto;
+    overflow-y: visible;
+  }
+
+  .gridExpanded .mapWrap{ height: auto; }
+  .gridExpanded .map{
+    height: auto;
+    aspect-ratio: 1 / 1.05;
+  }
+
+  .gridExpanded .scroller{
+    height: auto;
+  }
+}

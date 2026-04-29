@@ -1,0 +1,25 @@
+/*Instagram */
+
+.wrapper {
+  width: 100%;
+  max-width: 600px;   /* 好きなサイズ */
+  margin: 0 auto;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  aspect-ratio: 1 / 1; /* 全体を正方形 */
+  gap: 6px;
+}
+
+.item {
+  position: relative;
+  aspect-ratio: 1 / 1; /* 各マスを正方形 */
+  overflow: hidden;
+  background: #eee;
+}
+
+.image {
+  object-fit: cover; /* 画像を正方形にトリミング */
+}

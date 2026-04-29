@@ -1,0 +1,28 @@
+
+/* Footer */
+.footer{
+  padding: 40px 0 22px;
+  background: #121613;
+  color: rgba(255,255,255,0.86);
+}
+.footerInner{
+  display:grid;
+  grid-template-columns: 1.2fr 1fr 0.8fr;
+  gap: 18px;
+  align-items:start;
+  padding-bottom: 18px;
+  border-bottom: 1px solid rgba(255,255,255,0.12);
+}
+.footerLinks{
+  display:flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 13px;
+  color: rgba(255,255,255,0.72);
+}
+.footerLinks a:hover{ color: #fff; }
+.copyright{
+  padding-top: 16px;
+  color: rgba(255,255,255,0.55);
+  font-size: 12px;
+}

@@ -1,0 +1,113 @@
+/* ===== Photo gallery (inside card) ===== */
+.gallery{
+  margin: 10px 0 12px;
+}
+
+.galleryTop{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.galleryTitle{
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(15,23,42,0.55);
+  font-weight: 900;
+}
+
+/* PCはボタン出す、SPは隠す */
+.galleryControls{
+  display: flex;
+  gap: 8px;
+}
+
+.galleryBtn{
+  height: 30px;
+  padding: 0 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(15,23,42,0.12);
+  background: rgba(255,255,255,0.86);
+  color: rgba(15,23,42,0.86);
+  font-weight: 900;
+}
+
+.galleryBtn:disabled{
+  opacity: 0.45;
+}
+
+/* Track: swipe + snap */
+.galleryTrack{
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 86%;
+  gap: 10px;
+
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  overscroll-behavior-x: contain;
+  -webkit-overflow-scrolling: touch;
+
+  padding: 2px 2px 8px;
+}
+
+.gallerySlide{
+  scroll-snap-align: center;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(15,23,42,0.10);
+  background: rgba(255,255,255,0.40);
+}
+
+.galleryImg{
+  width: 100%;
+  height: 190px;
+  object-fit: cover;
+  display: block;
+}
+
+/* dots */
+.galleryDots{
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.galleryDot{
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  border: 0;
+  background: rgba(15,23,42,0.22);
+}
+
+.galleryDotActive{
+  background: rgba(15,23,42,0.66);
+}
+
+/* PCはカード内で見栄え良く：少し小さく、横幅安定 */
+@media (min-width: 768px){
+  .galleryTrack{
+    grid-auto-columns: 72%;
+  }
+  .galleryImg{
+    height: 220px;
+  }
+}
+
+/* SPは「いい感じ」：大きめ、ボタン消す、写真高さも抑える */
+@media (max-width: 520px){
+  .galleryControls{
+    display: none;
+  }
+  .galleryTrack{
+    grid-auto-columns: 92%;
+  }
+  .galleryImg{
+    height: 170px;
+  }
+}

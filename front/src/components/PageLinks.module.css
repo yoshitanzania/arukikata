@@ -1,0 +1,49 @@
+
+.pageLink{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.pageLinkPrimary,
+.pageLinkGhost{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-decoration: none;
+  border-radius: 999px;
+  padding: 12px 16px;
+  font-size: 14px;
+  letter-spacing: .03em;
+  transition: transform .12s ease, box-shadow .12s ease, background-color .12s ease;
+}
+
+.pageLinkPrimary{
+  background: rgba(238,238,238,1);
+  color: black;
+  
+}
+.pageLinkPrimary:hover{
+  transform: translateY(-1px);
+  box-shadow: 0 3px 6px rgba(0,0,0,.3);
+}
+
+.pageLinkGhost{
+  background: rgba(255,255,255,.70);
+  color: rgba(20,20,20,.82);
+  border: 1px solid rgba(20,20,20,.14);
+}
+.pageLinkGhost:hover{
+  transform: translateY(-1px);
+}
+
+/* タップ時の見た目も少しだけ気持ちいいように */
+@media (hover: none){
+  .pageLinkPrimary:active,
+  .pageLinkGhost:active{
+    transform: translateY(1px);
+  }
+}

@@ -1,0 +1,28 @@
+/* =========================
+   Top Page – Editorial / Calm
+   scope: page.css
+========================= */
+
+.head {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  margin-bottom: 34px;
+}
+
+.enTitle {
+  margin: 0;
+  font-size: clamp(16px, 1.6vw, 20px);
+  line-height: 1.4;
+  letter-spacing: 0.08em;
+  font-weight: 600;
+}
+
+.jpTitle {
+  margin: 8px 0 0;
+  font-size: clamp(32px, 4.8vw, 58px);
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  font-weight: 300;
+}
+

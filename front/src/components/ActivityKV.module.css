@@ -1,0 +1,26 @@
+.kv{
+  position: relative;
+  height: 100vh;
+  min-height: 640px;
+  top:20px;
+  overflow: hidden;
+}
+
+/* 背景画像 */
+.kvImg{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.02);
+}
+
+/* 文字を読みやすくする暗幕 */
+.kvOverlay{
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(900px 520px at 12% 88%, rgba(0,0,0,0.55), transparent 65%),
+    linear-gradient(180deg, rgba(0,0,0,0.10), rgba(0,0,0,0.28));
+}

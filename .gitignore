@@ -38,3 +38,14 @@ Thumbs.db
 /front/.env.development.local
 /front/.env.test.local
 /front/.env.production.local
+
+/front/public/images/
+/front/public/masks/
+/front/public/movies/
+
+/front/node_modules/
+/front/.next/
+/front/out/
+/front/build/
+/front/.env
+/front/.env.local

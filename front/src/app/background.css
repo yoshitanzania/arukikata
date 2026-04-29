@@ -1,0 +1,96 @@
+* タンザニアSVGの固定背景（初期は非表示） */
+.bg{
+  position: relative;
+  min-height: 100vh; /* スクロール用 */
+}
+
+
+/* 左上：シマウマ */
+.bg::before{
+  content:"";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image: url("/images/bg/monkey-left.svg");
+  background-repeat: no-repeat;
+  background-size: clamp(240px, 38vmin, 520px);
+  background-position: left -20px top 80px;
+
+  opacity: 0.08; /* 背景感 */
+}
+
+
+
+/* 右下：ライオン（左右反転） */
+.bg::after{
+  content:"";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+
+  background-image: url("/images/bg/hippo-right.svg");
+  background-repeat: no-repeat;
+  background-size: clamp(260px, 42vmin, 620px);
+  background-position: right -20px bottom -60px;
+
+  transform-origin: center;
+
+  opacity: 0.08;
+}
+
+.bg[data-page="trekking"]::before{
+  background-image: url("/images/bg/croco-left.svg");
+}
+
+.bg[data-page="trekking"]::after{
+  background-image: url("/images/bg/gazelle-right.svg");
+}
+
+.bg[data-page="safari"]::before{
+  background-image: url("/images/bg/elephant-left.svg");
+}
+.bg[data-page="safari"]::after{
+  background-image: url("/images/bg/gazelle-right.svg");
+}
+.bg[data-page="experince"]::before{
+  background-image: url("/images/bg/rhino-left.svg");
+}
+.bg[data-page="experince"]::after{
+  background-image: url("/images/bg/monkey-right.svg");
+}
+.bg[data-page="zanjibar"]::before{
+  background-image: url("/images/bg/monkey-left.svg");
+}
+.bg[data-page="zanjibar"]::after{
+  background-image: url("/images/bg/elephant-right.svg");
+}
+
+
+
+.bg::before,
+.bg::after{
+  transition: opacity 700ms ease;
+}
+
+
+/* ===== 中身は常に前面 ===== */
+.bg > *{
+  position: relative;
+  z-index: 1;
+}
+
+/* スマホ微調整 */
+@media (max-width: 640px){
+  .bg::before{
+    background-position: left -40px top 80px;
+    background-size: clamp(200px, 50vmin, 420px);
+    opacity: 0.06;
+  }
+  .bg::after{
+    background-position: right -60px bottom 0px;
+    background-size: clamp(220px, 55vmin, 520px);
+    opacity: 0.06;
+  }
+}

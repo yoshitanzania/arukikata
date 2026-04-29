@@ -1,0 +1,105 @@
+
+
+/* Head */
+.sectionHead{
+  margin-bottom: 18px;
+}
+
+.dualTitle{
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.dualTitleMain{
+  margin: 0;
+  font-size: clamp(18px, 2.1vw, 28px);
+  letter-spacing: 0.04em;
+  line-height: 1.25;
+  color: rgba(10,10,10,0.92);
+}
+
+/* Flow container */
+.flow{
+  margin-top: 14px;
+  border-radius: 22px;
+  border: 1px solid rgba(0,0,0,0.08);
+
+  backdrop-filter: blur(2px);
+  padding: 18px;
+}
+
+/* Item = timeline row */
+.flowItem{
+  display: grid;
+  grid-template-columns: 44px 1fr;
+  gap: 14px;
+  padding: 14px 8px;
+  position: relative;
+}
+
+/* divider line */
+.flowItem + .flowItem{
+  border-top: 1px solid rgba(0,0,0,0.07);
+}
+
+/* Number */
+.flowNum{
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+
+  border: 1px solid rgba(0,0,0,0.10);
+  background: rgba(255,255,255,0.70);
+  color: rgba(0,0,0,0.62);
+
+  font-size: 12px;
+  letter-spacing: 0.10em;
+}
+
+/* Body */
+.flowBody{
+  padding-top: 2px;
+}
+
+.flowTitle{
+  font-size: 15px;
+  letter-spacing: 0.03em;
+  color: rgba(10,10,10,0.90);
+  line-height: 1.4;
+  margin: 0 0 6px;
+}
+
+.flowDesc{
+  font-size: 14px;
+  line-height: 1.85;
+  color: rgba(10,10,10,0.70);
+}
+
+
+
+.note{
+  margin: 0;
+  font-size: 12px;
+  color: rgba(10,10,10,0.60);
+}
+
+/* Responsive */
+@media (max-width: 640px){
+  .flow{
+    padding: 14px;
+    border-radius: 18px;
+  }
+  .flowItem{
+    grid-template-columns: 38px 1fr;
+    gap: 12px;
+    padding: 12px 4px;
+  }
+  .flowNum{
+    width: 38px;
+    height: 38px;
+  }
+}
